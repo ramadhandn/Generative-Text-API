@@ -1,0 +1,6 @@
+Flask
+python-dotenv
+google-cloud-translate
+google-ai-generativelanguage
+google-cloud-firestore
+google-auth

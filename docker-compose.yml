@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  flask_generative_ai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}
+      - GCP_PROJECT_ID=${GCP_PROJECT_ID}
+    ports:
+      - "5000"
+    expose:
+      - "5000"
+    networks:
+      - backend
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "7151:80"
+    depends_on:
+      - flask_generative_ai
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge

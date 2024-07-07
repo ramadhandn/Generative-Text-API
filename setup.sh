@@ -1,0 +1,1 @@
+docker compose up -d --build --scale flask_generative_ai=3
